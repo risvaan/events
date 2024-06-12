@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <!-- CDNs -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        .navbar-custom {
+            background-color: #2c3e50;
+            border-color: #2c3e50;
+        }
+        .navbar-custom .navbar-brand {
+            color: rgb(126, 197, 231);
+            font-size: 25px;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        .navbar-custom .navbar-nav li a {
+            color: rgb(126, 197, 231);
+            font-size: 20px;
+        }
+        .navbar-custom .navbar-nav li a:hover {
+            color: #ffffff;
+            background-color: #1a242f;
+        }
+        .navbar-custom .navbar-nav .active a {
+            color: #ffffff;
+            background-color: #1a242f;
+        }
+        .navbar-custom .navbar-nav .navbar-right li a {
+            color: rgb(126, 197, 231);
+            font-size: 20px;
+        }
+        .navbar-custom .navbar-nav .navbar-right li a:hover {
+            color: #ffffff;
+            background-color: #1a242f;
+        }
+        h3 {
+            color: #ffffff;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar start -->
+    <nav class="navbar navbar-custom">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="#">SK EVENTS</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                <li><a href="{% url 'about' %}">About</a></li>
+                {% if user.is_authenticated %}
+                <li><a href="{% url 'events' %}">Events</a></li>
+                <li><a href="{% url 'booking' %}">Booking</a></li>
+                <li><a href="{% url 'contact' %}">Contact</a></li>
+                <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> LogOut</a></li>
+            </ul>
+            <h3>{{ user.username }}</h3>
+            {% else %}
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

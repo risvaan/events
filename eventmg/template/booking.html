@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Booking
+{% endblock %}
+
+{% block content %}
+<div class="container p-3 text-center" style="background-color: #ffffff; min-height: 100vh; width: auto;">
+    <div class="card p-3" style="font-family: 'Arial', sans-serif; color: #313030;">
+        <h1 class="mb-4">BOOK YOUR EVENTS</h1>
+        <form action="" method="POST" class="form-booking">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg">Book Now</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .form-booking {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .form-booking .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-booking .form-group input,
+    .form-booking .form-group select,
+    .form-booking .form-group textarea {
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #000000;
+        background-color: #fefefe;
+    }
+
+    .form-booking .form-group label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        display: block;
+    }
+
+    .form-booking .btn {
+        width: 100%;
+        padding: 10px;
+        font-size: 1.2rem;
+    }
+
+    .form-booking .btn:hover {
+        background-color: #032544;
+        border-color: #000000;
+    }
+</style>
+{% endblock %}
+
